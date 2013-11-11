@@ -8,21 +8,26 @@
 </head>
 <body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<% flash.each do |type, message| %>
+  <div class="alert <%= flash_class type %>">
+    <%= message %>
+  </div>
+<% end %>
+
+  
+
 
 
 <nav>
-<%= link_to "All Expenses", expenses_path %>
-
-<% if user_signed_in? %>
-  <%= link_to current_user.name, edit_user_registration_path %>
-  <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to "Register", new_user_registration_path %>
-  <%= link_to "Log in", new_user_session_path %>
-<% end %>
-
+  <%= link_to "All Expenses", dashboard_path %>
+  
+  <% if user_signed_in? %>
+    <%= link_to current_user.name, edit_user_registration_path %>
+    <%= link_to "Log out", logout_path %>
+  <% else %>
+    <%= link_to "Register", register_path %>
+    <%= link_to "Log in", login_path %>
+  <% end %>
 </nav>
 
 <%= yield %>
