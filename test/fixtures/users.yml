@@ -5,5 +5,5 @@
 # below each fixture, per the syntax in the comments below
 #
 ross:
-  name: "james"
+  name: "ross"
   email: "test1@test.com"

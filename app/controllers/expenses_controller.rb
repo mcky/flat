@@ -2,7 +2,10 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
+    @users = User.all
     @expenses = Expense.all
+    @expense = Expense.new
+
 
     respond_to do |format|
       format.html # index.html.erb

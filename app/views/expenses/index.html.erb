@@ -1,7 +1,32 @@
 <h1>Listing expenses (index)</h1>
-
+<%= render 'form' %>
+  
   
 <ul>
+<% @users.each do |user| %> 
+<li><%= user.name %></li>
+
+<% @expenses.each do |expense| %>  
+    <li>
+      <%= expense.user.name %>
+      <%= expense.date %>
+      <%= expense.title %>
+      <%= expense.price %>
+      <%= link_to 'Show', expense %>
+      <%= link_to 'Edit', edit_expense_path(expense) %>
+      <%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+
+
+
+<% end %>
+</ul>
+
+<hr>
+
+<!--
+<ul> 
   <% @expenses.each do |expense| %>  
     <li>
       <%= expense.user.name %>
@@ -15,4 +40,5 @@
   <% end %>
   <li><%= link_to 'New Expense', new_expense_path %></li>
 </ul>
+-->
 
