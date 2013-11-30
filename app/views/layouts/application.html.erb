@@ -12,18 +12,36 @@
   </head>
 
   <body>
-<nav>
-  <%= link_to "All Expenses", dashboard_path %>
-  
-  <% if user_signed_in? %>
-    <%= link_to current_user.name, edit_user_registration_path %>
-    <%= link_to "Log out", logout_path %>
-  <% else %>
-    <%= link_to "Register", register_path %>
-    <%= link_to "Log in", login_path %>
-  <% end %>
-</nav>
+    
+    
+ <nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">Whiteboard-thingy</a></h1>
+    </li>
+  </ul>
+
+<section class="top-bar-section">
+<!-- Right Nav Section -->
+<ul class="right">
+    <% if user_signed_in? %>
+        <li><%= link_to "All Expenses", dashboard_path %></li>
+        <li class="has-dropdown">
+            <%= link_to current_user.name, edit_user_registration_path %>
+            <ul class="dropdown">
+                <li><%= link_to "Log out", logout_path %></li>
+            </ul>
+        </li>
+    <% else %>
+        <li><%= link_to "Register", register_path %></li>
+        <li><%= link_to "Log in", login_path, :class => "button" %></li>
+    <% end %>
+</ul>
+</section>
+</nav>   
+    
     <%= yield %>
+
     <%= javascript_include_tag "application" %>
   </body>
 </html>

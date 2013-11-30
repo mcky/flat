@@ -1,4 +1,13 @@
+
 .expense-submit-button {
     @extend .button;
+    width: 100%;
+}
+
+.new-expense-button {
+    @extend .button;
+    width: 100%;
+}
+.expenses-table {
     width: 100%;
 }

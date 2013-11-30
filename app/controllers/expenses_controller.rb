@@ -7,6 +7,7 @@ class ExpensesController < ApplicationController
     @expenses = Expense.all
 #    @expenses = @user.expenses
     @expense = Expense.new
+    @expense.user = current_user
 
     respond_to do |format|
       format.html # index.html.erb
@@ -29,6 +30,7 @@ class ExpensesController < ApplicationController
   # GET /expenses/new.json
   def new
     @expense = Expense.new
+    @expense.user = current_user
 
     respond_to do |format|
       format.html # new.html.erb
@@ -48,7 +50,7 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to @expense, notice: 'Expense was successfully created.' }
+        format.html { redirect_to action: "index", notice: 'Expense was successfully created.' }
         format.json { render json: @expense, status: :created, location: @expense }
       else
         format.html { render action: "new" }

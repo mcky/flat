@@ -45,7 +45,6 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.0.2)
-    foundation-datetimepicker-rails (0.1.2)
     foundation-rails (5.0.2.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
@@ -120,7 +119,6 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
-  foundation-datetimepicker-rails
   foundation-rails
   jquery-rails
   rails (= 3.2.13)
