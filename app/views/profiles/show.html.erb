@@ -1,2 +1,14 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<h1><%= @user.name %></h1>
+
+
+<% if @expenses %>
+
+  <% @expenses.each do |expense| %>
+    <li>
+
+    <%= expense.date %> - 
+    <%= expense.title %> - 
+    <%= expense.price %>
+    </li>
+  <% end %>
+<% end %>

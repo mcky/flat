@@ -24,6 +24,9 @@ end
 
 gem 'jquery-rails'
 
+gem 'foundation-rails'
+gem 'foundation-datetimepicker-rails'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

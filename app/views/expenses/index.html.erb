@@ -1,44 +1,62 @@
-<h1>Listing expenses (index)</h1>
-<%= render 'form' %>
-  
-  
-<ul>
+
+<%#= render 'form' %>
+
+<input type="text" class="small-4 columns" value="02-16-2012" id="dp1">
+
 <% @users.each do |user| %> 
-<li><%= user.name %></li>
-
-<% @expenses.each do |expense| %>  
-    <li>
-      <%= expense.user.name %>
-      <%= expense.date %>
-      <%= expense.title %>
-      <%= expense.price %>
-      <%= link_to 'Show', expense %>
-      <%= link_to 'Edit', edit_expense_path(expense) %>
-      <%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </li>
-  <% end %>
-
-
-
+    <div class="small-4 columns">
+            <h3><%= user.name %></h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Title</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= user.expenses.each do |expense| %>
+                    <tr>
+                      <td><%= expense.date %></td>
+                      <td><%= expense.title %></td>
+                      <td><%= expense.price %></td>
+                    </tr>
+                <% end %>
+<%= simple_form_for(@expense, html: {class: "myclass"}, defaults: { input_html: { class: 'default_class' }, label: false, wrapper: false }) do |f| %> 
+    <tr>
+        <td colspan="3"><%= f.input :user_id, collection: User.all, label_method: :name %></td>
+    </tr>
+    <tr>
+        <td><%= f.input :date %></td>
+        <td><%= f.input :title %></td>
+        <td><%= f.input :price %></td>
+    </tr>
+    
+    <tr>
+       <td colspan="3"><%= f.button :submit, :class => "expense-submit-button" %></td>
+    </tr>
 <% end %>
-</ul>
+              </tbody>
+            </table>
+    </div>
+<% end %>
 
-<hr>
+      <%#= link_to 'Show', expense %>
+      <%#= link_to 'Edit', edit_expense_path(expense) %>
+      <%#= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+
+
 
 <!--
-<ul> 
-  <% @expenses.each do |expense| %>  
-    <li>
-      <%= expense.user.name %>
-      <%= expense.date %>
-      <%= expense.title %>
-      <%= expense.price %>
-      <%= link_to 'Show', expense %>
-      <%= link_to 'Edit', edit_expense_path(expense) %>
-      <%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </li>
-  <% end %>
-  <li><%= link_to 'New Expense', new_expense_path %></li>
-</ul>
+<%# if @expense.errors.any? %>
+    <div id="error_explanation">
+        <p><%#= pluralize(@expense.errors.count, "error") %> prohibited this expense from being saved:</p>
+        <ul>
+        <%# @expense.errors.full_messages.each do |msg| %>
+            <li><%#= msg %></li>
+        <%# end %>
+        </ul>
+    </div>
+<%# end %>
 -->
-

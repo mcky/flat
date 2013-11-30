@@ -3,9 +3,10 @@ class ExpensesController < ApplicationController
   # GET /expenses.json
   def index
     @users = User.all
+    @user = User.find_by_name(params[:id])
     @expenses = Expense.all
+#    @expenses = @user.expenses
     @expense = Expense.new
-
 
     respond_to do |format|
       format.html # index.html.erb
