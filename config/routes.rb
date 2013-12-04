@@ -1,4 +1,7 @@
 Flat::Application.routes.draw do
+  resources :statuses
+
+
   get "profiles/show"
 
   devise_for :users

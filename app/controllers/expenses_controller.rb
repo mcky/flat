@@ -5,7 +5,7 @@ class ExpensesController < ApplicationController
     @users = User.all
     @user = User.find_by_name(params[:id])
     @expenses = Expense.all
-#    @expenses = @user.expenses
+    #    @expenses = @user.expenses
     @expense = Expense.new
     @expense.user = current_user
 
