@@ -10,8 +10,9 @@ Flat::Application.routes.draw do
     get 'login', to: 'devise/sessions#new', as: :login
     get 'logout', to: 'devise/sessions#destroy', as: :logout
   end
+    
   resources :expenses
-  get 'dashboard', to: "expenses#index", as: :dashboard
+  #get 'dashboard', to: "expenses#index", as: :dashboard
   root :to => "expenses#index"
   
   get '/:id', to: 'profiles#show'

@@ -1,44 +1,43 @@
+<% if user_signed_in? %>
+    
 <% @users.each do |user| %> 
-    <div class="small-12 large-4 columns">
-            <h3><%= image_tag user.gravatar_url, :class => "media-object" %><%= user.name %></h3>
+    <div class="expenses">
+            <h3 class="expense__header"><%= link_to user.name, user.name %></h3>
             
-            <table class="expenses-table">
-              <thead>
+            <table class="expense__table">
+              <thead class="expense__table--header">
                 <tr>
-                  <th>Date</th>
-                  <th>Title</th>
-                  <th>Price</th>
+                  <th class="header--title">Title</th>
+                  <th class="header--price">Price</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="expense__table--body">
                 <% user.expenses.each do |expense| %>
-                    <tr>
-                      <td><%= expense.date %></td>
-                      <td><%= expense.title %></td>
-                      <td><%= expense.price %></td>
-                        <% if expense.user == current_user %>
-                            <td>edit</td>
-                        <% end %>
+                    <tr class="expense__table--row">
+                      <td class="expense__table--title"><%= expense.title %></td>
+                      <td class="expense__table--price"><%= expense.price %></td>
                     </tr>
+                  
+                        <%# if expense.user == current_user %>
+                        <%# end %>
                 <% end %>
-                    <tr>
-                        <td colspan="2">Total:</td>
+                    <tr class="expense__table--total">
+                        <td>Total:</td>
                         <td><%= user.expenses.sum(:price) %></td>
                     </tr>
                 <% if user == current_user %>
-                    <tr>
-                        <td colspan="3"><a class="new-expense-button"><b>+</b></a></td>
+                    <tr id="expense__form--new--row">
+                        <td colspan="2"><a id="expense__form--new" class="expense__form--new"><b>+</b></a></td>
                     </tr>
-                    <%= simple_form_for(@expense, html: {class: "myclass"}, defaults: { input_html: { class: 'default_class' }, label: false, wrapper: false }) do |f| %>     
-                        <tr>
+                    <%= simple_form_for(@expense, html: {class: "expense__form"}, defaults: { label: false, wrapper: false }) do |f| %>     
+                        <tr id="expense__form--row">
                             <%= f.hidden_field :user_id, collection: User.all, label_method: :name %>
-                            <td><%= f.input :date, as: :string, input_html: { class: 'dpclass' } %></td>
-                            <td><%= f.input :title %></td>
-                            <td><%= f.input :price %></td>
+                            <td><%= f.input :date, as: :string, :placeholder => "D", input_html: { id: 'expense__form--datepicker', class: 'dpclass expense__form--date' } %><%= f.input :title, input_html: { class: 'expense__form--title' }%></td>
+                            <td><%= f.input :price, input_html: { class: 'expense__form--price' } %></td>
                         </tr>
                         
-                        <tr>
-                           <td colspan="3"><%= f.button :submit, :class => "expense-submit-button" %></td>
+                        <tr id="expense__form--submit--row">
+                           <td colspan="2"><%= f.button :submit, :class => "expense__form--submit" %></td>
                         </tr>
                     <% end %>
                 <% end %>
@@ -66,3 +65,10 @@
     </div>
 <%# end %>
 -->
+
+
+
+
+<% else %>
+        Log in
+<% end %>

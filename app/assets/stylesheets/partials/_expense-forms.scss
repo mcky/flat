@@ -1,13 +1,87 @@
+.expenses {
+    @extend .small-12, .large-4, .columns;
+}
 
-.expense-submit-button {
+.expense__table {
+    display: block;
+    width: 100%;
+}
+
+.expense__table--header {
+    width: 100%;
+    display: block;
+    tr {
+        width: 100%;
+        display: block;
+        .header--title {
+            width: 100%;
+        }
+
+        .header--price {
+            width: 100%;   
+        }
+    }
+}
+
+.expense__table--body {
+    width: 100%!important;
+    height: 450px;
+    display: block;
+    overflow: scroll;
+    
+    tr {
+        width: 100%;
+//        display: block;
+    }
+}
+
+.expense__table--title {
+    width: 90%;
+//    background: green;
+}
+
+.expense__table--price {
+//    width: 10px!important;
+//    background: blue;
+}
+
+.expense__table--total {
+//    border-top: 1px solid #ccc;
+}
+
+.expense__form--date {
+    border: none!important;
+    box-shadow: none!important;
+    cursor: pointer;
+    width: 15%!important;
+    display: inline!important;
+}
+
+.expense__form--price::-webkit-outer-spin-button,
+.expense__form--price::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.expense__form--title {
+    width: 85%!important;
+    display: inline!important;
+//    background: blue!important;
+}
+
+.expense__form--submit, .expense__form--new {
     @extend .button;
     width: 100%;
 }
 
-.new-expense-button {
-    @extend .button;
-    width: 100%;
-}
-.expenses-table {
-    width: 100%;
-}
+//table tr{
+//    
+//    &:nth-of-type(even) {
+//        background: #ccc;
+//    }
+//
+//    &:nth-of-type(odd) {
+//        background: #d8d8d8;
+//    }
+//}
